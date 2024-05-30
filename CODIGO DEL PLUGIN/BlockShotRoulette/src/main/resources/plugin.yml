@@ -1,0 +1,4 @@
+name: BlockShotRoulette
+version: '${project.version}'
+main: bs.s4lpicon.blockshotroulette.BlockShotRoulette
+api-version: '1.20'

@@ -1,0 +1,7 @@
+mute_version_notification: false # Whether version notifications are muted.
+enable_autosave: true # Whether autosave is enabled.
+autosave_interval: 15 # The interval at which autosave is performed in minutes.
+save_on_changed: true # Whether the plugin should save holograms when they are changed.
+visibility_distance: 20 # The default visibility distance for holograms.
+register_commands: true # Whether the plugin should register its commands.
+report_errors_to_sentry: false # Whether the plugin should report errors to Sentry.

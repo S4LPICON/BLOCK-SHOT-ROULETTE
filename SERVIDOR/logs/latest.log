@@ -1,0 +1,337 @@
+[15:05:56] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[15:05:58] [ServerMain/INFO]: Loaded 1174 recipes
+[15:05:58] [ServerMain/INFO]: Loaded 1271 advancements
+[15:05:58] [Server thread/INFO]: Starting minecraft server version 1.20.4
+[15:05:58] [Server thread/INFO]: Loading properties
+[15:05:58] [Server thread/INFO]: This server is running Paper version git-Paper-496 (MC: 1.20.4) (Implementing API version 1.20.4-R0.1-SNAPSHOT) (Git: 7ac24a1 on ver/1.20.4)
+[15:06:00] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[15:06:00] [Server thread/INFO]: Using 4 threads for Netty based IO
+[15:06:00] [Server thread/WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+    We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
+    For more information please visit: https://github.com/PaperMC/Paper/issues/8948
+[15:06:00] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 3 worker threads, and gen parallelism of 3 threads
+[15:06:00] [Server thread/INFO]: Default game type: SURVIVAL
+[15:06:00] [Server thread/INFO]: Generating keypair
+[15:06:01] [Server thread/INFO]: Starting Minecraft server on *:25565
+[15:06:01] [Server thread/INFO]: Using default channel type
+[15:06:01] [Server thread/INFO]: Paper: Using Java compression from Velocity.
+[15:06:01] [Server thread/INFO]: Paper: Using Java cipher from Velocity.
+[15:06:01] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.2+6779-3aca580
+[15:06:02] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@68575e35]
+[15:06:02] [Server thread/INFO]: [FancyHolograms] Loading server plugin FancyHolograms v2.1.0
+[15:06:02] [Server thread/INFO]: [BlockShotRoulette] Loading server plugin BlockShotRoulette v0.7.2
+[15:06:02] [Server thread/INFO]: [ArmorStandEditor] Loading server plugin ArmorStandEditor v1.20.6-46
+[15:06:02] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[15:06:02] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.2+6779-3aca580
+[15:06:02] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[15:06:02] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[15:06:02] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[15:06:04] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[15:06:04] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[15:06:04] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[15:06:04] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[15:06:04] [Server thread/INFO]: Preparing level "Block_Shot_Roulette_by_S4LPICON"
+[15:06:06] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[15:06:06] [Server thread/INFO]: Time elapsed: 457 ms
+[15:06:06] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end
+[15:06:06] [Server thread/INFO]: Time elapsed: 123 ms
+[15:06:06] [Server thread/INFO]: [FancyHolograms] Enabling FancyHolograms v2.1.0
+[15:06:06] [Server thread/INFO]: [BlockShotRoulette] Enabling BlockShotRoulette v0.7.2
+[15:06:06] [Server thread/INFO]: [BlockShotRoulette] Plugin activado
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] Enabling ArmorStandEditor v1.20.6-46
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] ======= ArmorStandEditor =======
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] Plugin Version: v1.20.4-45
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] Minecraft Version: 1.20.4
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] ArmorStandEditor is compatible with this version of Minecraft. Loading continuing.
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] SpigotMC: true
+[15:06:06] [Server thread/INFO]: Registering Scoreboards required for Glowing Effects
+[15:06:06] [Server thread/INFO]: [ArmorStandEditor] ================================
+[15:06:07] [Server thread/INFO]: Running delayed init tasks
+[15:06:07] [Server thread/INFO]: Done (8.447s)! For help, type "help"
+[15:06:07] [Server thread/INFO]: Timings Reset
+[15:18:03] [User Authenticator #0/INFO]: UUID of player S4LPICON is 5a53592c-d372-3734-abf1-eab3e5ea2830
+[15:18:04] [Server thread/INFO]: S4LPICON joined the game
+[15:18:04] [Server thread/INFO]: S4LPICON[/127.0.0.1:58050] logged in with entity id 1 at ([Block_Shot_Roulette_by_S4LPICON]10.5, -59.91250002384186, 23.5)
+[15:18:09] [User Authenticator #0/INFO]: UUID of player S4lpi is 55d72e54-d75e-3ec1-9313-73a209876efa
+[15:18:12] [Server thread/INFO]: S4lpi joined the game
+[15:18:12] [Server thread/INFO]: S4lpi[/192.168.1.2:40016] logged in with entity id 3 at ([Block_Shot_Roulette_by_S4LPICON]10.5, -59.41250002384186, 17.5)
+[15:18:21] [Server thread/INFO]: S4LPICON issued server command: /reload confirm
+[15:18:21] [Server thread/INFO]: S4LPICON: Please note that this command is not supported and may cause issues when using some plugins.
+[15:18:21] [Server thread/INFO]: S4LPICON: If you encounter any issues please use the /stop command to restart your server.
+[15:18:21] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[15:18:21] [Server thread/INFO]: Using 4 threads for Netty based IO
+[15:18:21] [Server thread/INFO]: [ArmorStandEditor] Disabling ArmorStandEditor v1.20.6-46
+[15:18:21] [Server thread/INFO]: [ArmorStandEditor] Removing Scoreboards required for Glowing Effects
+[15:18:21] [Server thread/INFO]: [BlockShotRoulette] Disabling BlockShotRoulette v0.7.2
+[15:18:21] [Server thread/INFO]: [FancyHolograms] Disabling FancyHolograms v2.1.0
+[15:18:21] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.2+6779-3aca580
+[15:18:21] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[15:18:21] [Server thread/INFO]: Loaded 1174 recipes
+[15:18:22] [Server thread/INFO]: Loaded 1271 advancements
+[15:18:23] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.2+6779-3aca580
+[15:18:24] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@7d10511b]
+[15:18:24] [Server thread/INFO]: [FancyHolograms] Loading server plugin FancyHolograms v2.1.0
+[15:18:24] [Server thread/INFO]: [BlockShotRoulette] Loading server plugin BlockShotRoulette v0.7.2
+[15:18:24] [Server thread/INFO]: [ArmorStandEditor] Loading server plugin ArmorStandEditor v1.20.6-46
+[15:18:24] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[15:18:24] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.2+6779-3aca580
+[15:18:24] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[15:18:24] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[15:18:24] [Server thread/WARN]: [WorldEdit] Server reload detected. This may cause various issues with WorldEdit and dependent plugins.
+[15:18:25] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[15:18:27] [Server thread/INFO]: [FancyHolograms] Enabling FancyHolograms v2.1.0
+[15:18:27] [Server thread/INFO]: [BlockShotRoulette] Enabling BlockShotRoulette v0.7.2
+[15:18:27] [Server thread/INFO]: [BlockShotRoulette] Plugin activado
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] Enabling ArmorStandEditor v1.20.6-46
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] ======= ArmorStandEditor =======
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] Plugin Version: v1.20.4-45
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] Minecraft Version: 1.20.4
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] ArmorStandEditor is compatible with this version of Minecraft. Loading continuing.
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] SpigotMC: true
+[15:18:27] [Server thread/INFO]: Registering Scoreboards required for Glowing Effects
+[15:18:27] [Server thread/INFO]: [ArmorStandEditor] ================================
+[15:18:28] [Server thread/INFO]: S4LPICON: Reload complete.
+[15:18:28] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6954ms or 139 ticks behind
+[15:18:28] [Server thread/INFO]: Timings Reset
+[15:18:36] [Server thread/ERROR]: Could not pass event PlayerMoveEvent to BlockShotRoulette v0.7.2
+java.lang.NullPointerException: Cannot invoke "java.util.ArrayList.add(Object)" because "this.ordenBalas" is null
+	at bs.s4lpicon.blockshotroulette.Escopeta.recargar(Escopeta.java:67) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.ronda1(GameAdmin.java:54) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.inciarJuego(GameAdmin.java:42) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.checkAndStartGame(GameAdmin.java:94) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.tpVagonetaJugador(GameAdmin.java:139) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.EntradaDeJugadores(GameAdmin.java:119) ~[BlockShotRoulette.jar:?]
+	at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor24.execute(Unknown Source) ~[?:?]
+	at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:git-Paper-496]
+	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.20.4.jar:git-Paper-496]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.20.4.jar:git-Paper-496]
+	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.handleMovePlayer(ServerGamePacketListenerImpl.java:1576) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.handle(ServerboundMovePlayerPacket.java:29) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$PosRot.handle(ServerboundMovePlayerPacket.java:88) ~[?:?]
+	at net.minecraft.network.protocol.PacketUtils.lambda$ensureRunningOnSameThread$0(PacketUtils.java:54) ~[?:?]
+	at net.minecraft.server.TickTask.run(TickTask.java:18) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:149) ~[?:?]
+	at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:24) ~[?:?]
+	at net.minecraft.server.MinecraftServer.doRunTask(MinecraftServer.java:1465) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.d(MinecraftServer.java:194) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:123) ~[?:?]
+	at net.minecraft.server.MinecraftServer.pollTaskInternal(MinecraftServer.java:1442) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.pollTask(MinecraftServer.java:1365) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:133) ~[?:?]
+	at net.minecraft.server.MinecraftServer.waitUntilNextTick(MinecraftServer.java:1343) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1232) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:319) ~[paper-1.20.4.jar:git-Paper-496]
+	at java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[15:21:46] [Server thread/INFO]: S4LPICON issued server command: /reload confirm
+[15:21:46] [Server thread/INFO]: S4LPICON: Please note that this command is not supported and may cause issues when using some plugins.
+[15:21:46] [Server thread/INFO]: S4LPICON: If you encounter any issues please use the /stop command to restart your server.
+[15:21:46] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[15:21:46] [Server thread/INFO]: Using 4 threads for Netty based IO
+[15:21:47] [Server thread/INFO]: [ArmorStandEditor] Disabling ArmorStandEditor v1.20.6-46
+[15:21:47] [Server thread/INFO]: [ArmorStandEditor] Removing Scoreboards required for Glowing Effects
+[15:21:47] [Server thread/INFO]: [BlockShotRoulette] Disabling BlockShotRoulette v0.7.2
+[15:21:47] [Server thread/INFO]: [FancyHolograms] Disabling FancyHolograms v2.1.0
+[15:21:47] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.2+6779-3aca580
+[15:21:47] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[15:21:47] [Server thread/INFO]: Loaded 1174 recipes
+[15:21:47] [Server thread/INFO]: Loaded 1271 advancements
+[15:21:50] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.2+6779-3aca580
+[15:21:51] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@7c44fcc9]
+[15:21:51] [Server thread/INFO]: [FancyHolograms] Loading server plugin FancyHolograms v2.1.0
+[15:21:51] [Server thread/INFO]: [BlockShotRoulette] Loading server plugin BlockShotRoulette v0.7.2
+[15:21:51] [Server thread/INFO]: [ArmorStandEditor] Loading server plugin ArmorStandEditor v1.20.6-46
+[15:21:51] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[15:21:51] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.2+6779-3aca580
+[15:21:51] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[15:21:51] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[15:21:51] [Server thread/WARN]: [WorldEdit] Server reload detected. This may cause various issues with WorldEdit and dependent plugins.
+[15:21:51] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[15:21:52] [Server thread/INFO]: [FancyHolograms] Enabling FancyHolograms v2.1.0
+[15:21:52] [Server thread/INFO]: [BlockShotRoulette] Enabling BlockShotRoulette v0.7.2
+[15:21:52] [Server thread/INFO]: [BlockShotRoulette] Plugin activado
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] Enabling ArmorStandEditor v1.20.6-46
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] ======= ArmorStandEditor =======
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] Plugin Version: v1.20.4-45
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] Minecraft Version: 1.20.4
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] ArmorStandEditor is compatible with this version of Minecraft. Loading continuing.
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] SpigotMC: true
+[15:21:52] [Server thread/INFO]: Registering Scoreboards required for Glowing Effects
+[15:21:52] [Server thread/INFO]: [ArmorStandEditor] ================================
+[15:21:52] [Server thread/INFO]: S4LPICON: Reload complete.
+[15:21:52] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5756ms or 115 ticks behind
+[15:21:52] [Server thread/INFO]: Timings Reset
+[15:22:02] [Server thread/ERROR]: Could not pass event PlayerMoveEvent to BlockShotRoulette v0.7.2
+java.lang.NullPointerException: Cannot invoke "java.util.ArrayList.add(Object)" because "this.ordenBalas" is null
+	at bs.s4lpicon.blockshotroulette.Escopeta.recargar(Escopeta.java:67) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.ronda1(GameAdmin.java:54) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.inciarJuego(GameAdmin.java:42) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.checkAndStartGame(GameAdmin.java:94) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.tpVagonetaJugador(GameAdmin.java:139) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.EntradaDeJugadores(GameAdmin.java:119) ~[BlockShotRoulette.jar:?]
+	at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor37.execute(Unknown Source) ~[?:?]
+	at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:git-Paper-496]
+	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.20.4.jar:git-Paper-496]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.20.4.jar:git-Paper-496]
+	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.handleMovePlayer(ServerGamePacketListenerImpl.java:1576) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.handle(ServerboundMovePlayerPacket.java:29) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$PosRot.handle(ServerboundMovePlayerPacket.java:88) ~[?:?]
+	at net.minecraft.network.protocol.PacketUtils.lambda$ensureRunningOnSameThread$0(PacketUtils.java:54) ~[?:?]
+	at net.minecraft.server.TickTask.run(TickTask.java:18) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:149) ~[?:?]
+	at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:24) ~[?:?]
+	at net.minecraft.server.MinecraftServer.doRunTask(MinecraftServer.java:1465) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.d(MinecraftServer.java:194) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:123) ~[?:?]
+	at net.minecraft.server.MinecraftServer.pollTaskInternal(MinecraftServer.java:1442) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.pollTask(MinecraftServer.java:1365) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:133) ~[?:?]
+	at net.minecraft.server.MinecraftServer.waitUntilNextTick(MinecraftServer.java:1343) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1232) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:319) ~[paper-1.20.4.jar:git-Paper-496]
+	at java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[15:23:51] [Server thread/INFO]: S4LPICON issued server command: /reload confirm
+[15:23:51] [Server thread/INFO]: S4LPICON: Please note that this command is not supported and may cause issues when using some plugins.
+[15:23:51] [Server thread/INFO]: S4LPICON: If you encounter any issues please use the /stop command to restart your server.
+[15:23:51] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[15:23:51] [Server thread/INFO]: Using 4 threads for Netty based IO
+[15:23:51] [Server thread/INFO]: [ArmorStandEditor] Disabling ArmorStandEditor v1.20.6-46
+[15:23:51] [Server thread/INFO]: [ArmorStandEditor] Removing Scoreboards required for Glowing Effects
+[15:23:51] [Server thread/INFO]: [BlockShotRoulette] Disabling BlockShotRoulette v0.7.2
+[15:23:51] [Server thread/INFO]: [FancyHolograms] Disabling FancyHolograms v2.1.0
+[15:23:51] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.2+6779-3aca580
+[15:23:51] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[15:23:52] [Server thread/INFO]: Loaded 1174 recipes
+[15:23:52] [Server thread/INFO]: Loaded 1271 advancements
+[15:23:53] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.2+6779-3aca580
+[15:23:54] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@2234d829]
+[15:23:54] [Server thread/INFO]: [FancyHolograms] Loading server plugin FancyHolograms v2.1.0
+[15:23:54] [Server thread/INFO]: [BlockShotRoulette] Loading server plugin BlockShotRoulette v0.7.2
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] Loading server plugin ArmorStandEditor v1.20.6-46
+[15:23:54] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[15:23:54] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.2+6779-3aca580
+[15:23:54] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[15:23:54] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[15:23:54] [Server thread/WARN]: [WorldEdit] Server reload detected. This may cause various issues with WorldEdit and dependent plugins.
+[15:23:54] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[15:23:54] [Server thread/INFO]: [FancyHolograms] Enabling FancyHolograms v2.1.0
+[15:23:54] [Server thread/INFO]: [BlockShotRoulette] Enabling BlockShotRoulette v0.7.2
+[15:23:54] [Server thread/INFO]: [BlockShotRoulette] Plugin activado
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] Enabling ArmorStandEditor v1.20.6-46
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] ======= ArmorStandEditor =======
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] Plugin Version: v1.20.4-45
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] Minecraft Version: 1.20.4
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] ArmorStandEditor is compatible with this version of Minecraft. Loading continuing.
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] SpigotMC: true
+[15:23:54] [Server thread/INFO]: Registering Scoreboards required for Glowing Effects
+[15:23:54] [Server thread/INFO]: [ArmorStandEditor] ================================
+[15:23:55] [Server thread/INFO]: S4LPICON: Reload complete.
+[15:23:55] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3605ms or 72 ticks behind
+[15:23:55] [Server thread/INFO]: Timings Reset
+[15:37:56] [Server thread/INFO]: S4LPICON issued server command: /tp S4lpi S4LPICON
+[15:37:56] [Server thread/INFO]: [S4LPICON: Teleported S4lpi to S4LPICON]
+[16:30:02] [Server thread/INFO]: S4LPICON issued server command: /reload confirm
+[16:30:02] [Server thread/INFO]: S4LPICON: Please note that this command is not supported and may cause issues when using some plugins.
+[16:30:02] [Server thread/INFO]: S4LPICON: If you encounter any issues please use the /stop command to restart your server.
+[16:30:03] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[16:30:03] [Server thread/INFO]: Using 4 threads for Netty based IO
+[16:30:03] [Server thread/INFO]: [ArmorStandEditor] Disabling ArmorStandEditor v1.20.6-46
+[16:30:03] [Server thread/INFO]: [ArmorStandEditor] Removing Scoreboards required for Glowing Effects
+[16:30:03] [Server thread/INFO]: [BlockShotRoulette] Disabling BlockShotRoulette v0.7.2
+[16:30:03] [Server thread/INFO]: [FancyHolograms] Disabling FancyHolograms v2.1.0
+[16:30:03] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.2+6779-3aca580
+[16:30:04] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[16:30:05] [Server thread/INFO]: Loaded 1174 recipes
+[16:30:07] [Server thread/INFO]: Loaded 1271 advancements
+[16:30:11] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.3.2+6779-3aca580
+[16:30:14] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@7f1b5e57]
+[16:30:14] [Server thread/INFO]: [FancyHolograms] Loading server plugin FancyHolograms v2.1.0
+[16:30:14] [Server thread/INFO]: [BlockShotRoulette] Loading server plugin BlockShotRoulette v0.7.2
+[16:30:14] [Server thread/INFO]: [ArmorStandEditor] Loading server plugin ArmorStandEditor v1.20.6-46
+[16:30:14] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[16:30:14] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.3.2+6779-3aca580
+[16:30:14] [Server thread/INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[16:30:14] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[16:30:14] [Server thread/WARN]: [WorldEdit] Server reload detected. This may cause various issues with WorldEdit and dependent plugins.
+[16:30:14] [Server thread/INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v1_20_R3.PaperweightAdapter as the Bukkit adapter
+[16:30:18] [Server thread/INFO]: [FancyHolograms] Enabling FancyHolograms v2.1.0
+[16:30:18] [Server thread/INFO]: [BlockShotRoulette] Enabling BlockShotRoulette v0.7.2
+[16:30:18] [Server thread/INFO]: [BlockShotRoulette] Plugin activado
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] Enabling ArmorStandEditor v1.20.6-46
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] ======= ArmorStandEditor =======
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] Plugin Version: v1.20.4-45
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] Minecraft Version: 1.20.4
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] ArmorStandEditor is compatible with this version of Minecraft. Loading continuing.
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] SpigotMC: true
+[16:30:18] [Server thread/INFO]: Registering Scoreboards required for Glowing Effects
+[16:30:18] [Server thread/INFO]: [ArmorStandEditor] ================================
+[16:30:19] [Server thread/INFO]: S4LPICON: Reload complete.
+[16:30:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 16363ms or 327 ticks behind
+[16:30:19] [Server thread/INFO]: Timings Reset
+[16:30:29] [Server thread/ERROR]: Could not pass event PlayerMoveEvent to BlockShotRoulette v0.7.2
+java.lang.NullPointerException: Cannot invoke "bs.s4lpicon.blockshotroulette.Escopeta.setMaxBalas(int)" because "this.escopeta" is null
+	at bs.s4lpicon.blockshotroulette.GameAdmin.ronda1(GameAdmin.java:56) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.inciarJuego(GameAdmin.java:45) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.checkAndStartGame(GameAdmin.java:106) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.tpVagonetaJugador(GameAdmin.java:151) ~[BlockShotRoulette.jar:?]
+	at bs.s4lpicon.blockshotroulette.GameAdmin.EntradaDeJugadores(GameAdmin.java:131) ~[BlockShotRoulette.jar:?]
+	at com.destroystokyo.paper.event.executor.asm.generated.GeneratedEventExecutor65.execute(Unknown Source) ~[?:?]
+	at org.bukkit.plugin.EventExecutor$2.execute(EventExecutor.java:77) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at co.aikar.timings.TimedEventExecutor.execute(TimedEventExecutor.java:81) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:git-Paper-496]
+	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:70) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperEventManager.callEvent(PaperEventManager.java:54) ~[paper-1.20.4.jar:git-Paper-496]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.callEvent(PaperPluginManagerImpl.java:126) ~[paper-1.20.4.jar:git-Paper-496]
+	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:615) ~[paper-api-1.20.4-R0.1-SNAPSHOT.jar:?]
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.handleMovePlayer(ServerGamePacketListenerImpl.java:1576) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket.handle(ServerboundMovePlayerPacket.java:29) ~[?:?]
+	at net.minecraft.network.protocol.game.ServerboundMovePlayerPacket$PosRot.handle(ServerboundMovePlayerPacket.java:88) ~[?:?]
+	at net.minecraft.network.protocol.PacketUtils.lambda$ensureRunningOnSameThread$0(PacketUtils.java:54) ~[?:?]
+	at net.minecraft.server.TickTask.run(TickTask.java:18) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:149) ~[?:?]
+	at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:24) ~[?:?]
+	at net.minecraft.server.MinecraftServer.doRunTask(MinecraftServer.java:1465) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.d(MinecraftServer.java:194) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.pollTask(BlockableEventLoop.java:123) ~[?:?]
+	at net.minecraft.server.MinecraftServer.pollTaskInternal(MinecraftServer.java:1442) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.pollTask(MinecraftServer.java:1365) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.util.thread.BlockableEventLoop.managedBlock(BlockableEventLoop.java:133) ~[?:?]
+	at net.minecraft.server.MinecraftServer.waitUntilNextTick(MinecraftServer.java:1343) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1232) ~[paper-1.20.4.jar:git-Paper-496]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:319) ~[paper-1.20.4.jar:git-Paper-496]
+	at java.lang.Thread.run(Thread.java:1583) ~[?:?]
+[16:31:13] [Server thread/INFO]: S4lpi lost connection: Disconnected
+[16:31:14] [Server thread/INFO]: S4lpi left the game
+[16:33:43] [Server thread/INFO]: S4LPICON issued server command: /stop
+[16:33:43] [Server thread/INFO]: [S4LPICON: Stopping the server]
+[16:33:43] [Server thread/INFO]: Stopping server
+[16:33:43] [Server thread/INFO]: [ArmorStandEditor] Disabling ArmorStandEditor v1.20.6-46
+[16:33:43] [Server thread/INFO]: [ArmorStandEditor] Removing Scoreboards required for Glowing Effects
+[16:33:43] [Server thread/INFO]: [BlockShotRoulette] Disabling BlockShotRoulette v0.7.2
+[16:33:43] [Server thread/INFO]: [FancyHolograms] Disabling FancyHolograms v2.1.0
+[16:33:43] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.3.2+6779-3aca580
+[16:33:43] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[16:33:43] [Server thread/INFO]: Saving players
+[16:33:43] [Server thread/INFO]: S4LPICON lost connection: Server closed
+[16:33:43] [Server thread/INFO]: S4LPICON left the game
+[16:33:43] [Server thread/INFO]: Saving worlds
+[16:33:43] [Server thread/INFO]: Saving chunks for level 'ServerLevel[Block_Shot_Roulette_by_S4LPICON]'/minecraft:overworld
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'Block_Shot_Roulette_by_S4LPICON'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'Block_Shot_Roulette_by_S4LPICON'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'Block_Shot_Roulette_by_S4LPICON'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'Block_Shot_Roulette_by_S4LPICON' in 0,02s
+[16:33:43] [Server thread/INFO]: ThreadedAnvilChunkStorage (Block_Shot_Roulette_by_S4LPICON): All chunks are saved
+[16:33:43] [Server thread/INFO]: Saving chunks for level 'ServerLevel[Block_Shot_Roulette_by_S4LPICON_the_end]'/minecraft:the_end
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Waiting 60s for chunk system to halt for world 'Block_Shot_Roulette_by_S4LPICON_the_end'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Halted chunk system for world 'Block_Shot_Roulette_by_S4LPICON_the_end'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Saving all chunkholders for world 'Block_Shot_Roulette_by_S4LPICON_the_end'
+[16:33:43] [Server thread/INFO]: [ChunkHolderManager] Saved 0 block chunks, 0 entity chunks, 0 poi chunks in world 'Block_Shot_Roulette_by_S4LPICON_the_end' in 0,01s
+[16:33:43] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[16:33:43] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+[16:33:43] [Server thread/INFO]: Flushing Chunk IO
+[16:33:43] [Server thread/INFO]: Closing Thread Pool
+[16:33:43] [Server thread/INFO]: Closing Server

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BlockShotRoulette:jar">
+    <output-path>$PROJECT_DIR$/../../../.MCzofrenic/BLOCK SHOT ROULETTE - DEFINITIVE EDITION/plugins</output-path>
+    <root id="archive" name="BlockShotRoulette.jar">
+      <element id="module-output" name="BlockShotRoulette" />
+    </root>
+  </artifact>
+</component>

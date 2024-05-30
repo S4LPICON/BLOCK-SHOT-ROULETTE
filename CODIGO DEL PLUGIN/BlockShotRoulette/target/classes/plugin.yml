@@ -1,0 +1,4 @@
+name: BlockShotRoulette
+version: '0.7.2'
+main: bs.s4lpicon.blockshotroulette.BlockShotRoulette
+api-version: '1.20'
