@@ -1,0 +1,28 @@
+# === Gradle & Build Outputs ===
+.gradle/
+build/
+out/
+
+# === IDE (IntelliJ IDEA) ===
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# === Minecraft Server Test Environment (La carpeta de ejecucion) ===
+/run/
+
+# === Compiled / Package Files ===
+*.class
+*.jar
+*.war
+
+# === Logs & Temporary Files ===
+*.log
+*.log.gz
+hs_err_pid*
+replay_pid*
+
+# === OS Specific ===
+.DS_Store
+Thumbs.db
