@@ -1,0 +1,18 @@
+name: BlockShotRoulette
+description: $description
+version: '${version}'
+
+main: com.s4lpicon.blockShotRoulette.BlockShotRoulette
+api-version: '26.1.2'
+load: POSTWORLD
+
+authors: [ Pinzon ]
+
+commands:
+  test:
+    description: Comando de prueba
+    usage: /test
+
+  use-item:
+    description: comando para usar items
+    usage: /use-item <slot>
