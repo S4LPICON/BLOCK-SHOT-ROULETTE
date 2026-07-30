@@ -1,14 +1,14 @@
 package com.s4lpicon.blockShotRoulette.model;
 
+import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerDamageEvent;
+import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerDeathEvent;
 import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.manager.ItemManager;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
 import com.s4lpicon.blockShotRoulette.task.AimItemTask;
 import com.s4lpicon.blockShotRoulette.task.AimTask;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BlockShotPlayer {
 
@@ -47,8 +47,29 @@ public class BlockShotPlayer {
         this.energy += energy;
     }
 
-    public void damage(int damage){
-        this.energy -= damage;
+    public void takeDamage(BlockShotPlayer damager, int amount) {
+
+        this.energy -= amount;
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotPlayerDamageEvent(
+                        damager,
+                        this,
+                        amount
+                )
+        );
+
+        if (this.energy <= 0) {
+
+            this.playerState = PlayerState.DEAD;
+
+            Bukkit.getPluginManager().callEvent(
+                    new BlockShotPlayerDeathEvent(
+                            damager,
+                            this
+                    )
+            );
+        }
     }
 
     public PlayerState getPlayerState(){

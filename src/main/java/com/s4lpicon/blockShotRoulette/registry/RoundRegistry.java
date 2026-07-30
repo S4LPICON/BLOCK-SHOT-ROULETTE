@@ -7,7 +7,7 @@ import java.util.List;
 public final class RoundRegistry {
 
     public static final List<RoundSettings> ROUNDS = List.of(
-            new RoundSettings(6, 2, 1, 2),
+            new RoundSettings(2, 4, 3, 3),
             new RoundSettings(3, 3, 2, 3),
             new RoundSettings(3, 4, 3, 4)
     );

@@ -2,10 +2,7 @@ package com.s4lpicon.blockShotRoulette;
 
 import com.s4lpicon.blockShotRoulette.command.TestCommand;
 import com.s4lpicon.blockShotRoulette.command.UseItemTestCommand;
-import com.s4lpicon.blockShotRoulette.listener.BlockShotPlayerShootListener;
-import com.s4lpicon.blockShotRoulette.listener.BlockShotPlayerUseItemListener;
-import com.s4lpicon.blockShotRoulette.listener.PlayerInteractListener;
-import com.s4lpicon.blockShotRoulette.listener.VehicleExitListener;
+import com.s4lpicon.blockShotRoulette.listener.*;
 import com.s4lpicon.blockShotRoulette.manager.BlockShotGameManager;
 import com.s4lpicon.blockShotRoulette.manager.ItemEffectManager;
 import org.bukkit.Bukkit;
@@ -21,7 +18,7 @@ public final class BlockShotRoulette extends JavaPlugin {
 
     private static BlockShotRoulette instance;
 
-    private ItemEffectManager itemEffectManager;
+    private final ItemEffectManager itemEffectManager = new ItemEffectManager();
 
     @Override
     public void onEnable() {
@@ -34,6 +31,10 @@ public final class BlockShotRoulette extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new VehicleExitListener(),this);
 
         getServer().getPluginManager().registerEvents(new BlockShotPlayerUseItemListener(itemEffectManager),this);
+
+        getServer().getPluginManager().registerEvents(new BlockShotPlayerDeathListener(),this);
+
+        getServer().getPluginManager().registerEvents(new BlockShotPlayerDamageListener(),this);
 
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand(this));
 

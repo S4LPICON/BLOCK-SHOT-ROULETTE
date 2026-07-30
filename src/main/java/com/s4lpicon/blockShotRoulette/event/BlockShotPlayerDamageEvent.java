@@ -5,14 +5,14 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockShotPlayerDamagedEvent extends Event {
+public class BlockShotPlayerDamageEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private final BlockShotPlayer shooter;
     private final BlockShotPlayer victim;
     private final int damage;
 
-    public BlockShotPlayerDamagedEvent(BlockShotPlayer shooter, BlockShotPlayer victim, int damage) {
+    public BlockShotPlayerDamageEvent(BlockShotPlayer shooter, BlockShotPlayer victim, int damage) {
         this.shooter = shooter;
         this.victim = victim;
         this.damage = damage;
@@ -29,9 +29,6 @@ public class BlockShotPlayerDamagedEvent extends Event {
     public int getDamage(){
         return this.damage;
     }
-
-
-
 
     @Override
     public @NotNull HandlerList getHandlers() {

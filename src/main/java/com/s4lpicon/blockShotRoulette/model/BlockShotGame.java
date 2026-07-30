@@ -8,7 +8,6 @@ import com.s4lpicon.blockShotRoulette.registry.settings.RoundSettings;
 import com.s4lpicon.blockShotRoulette.manager.TurnManager;
 import com.s4lpicon.blockShotRoulette.state.GameState;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
-import com.s4lpicon.blockShotRoulette.task.AimItemTask;
 import com.s4lpicon.blockShotRoulette.task.AimTask;
 import com.s4lpicon.blockShotRoulette.util.ItemPoolUtil;
 import org.bukkit.entity.Player;
@@ -67,10 +66,9 @@ public class BlockShotGame {
 
                 if (itemManager.giveItem(item)){
                     player.getPlayer().sendMessage("Has recibo un: "+ item);
+                }else {
+                    player.getPlayer().sendMessage("NO pudiste recibir el item");
                 }
-
-                player.getPlayer().sendMessage("NO pudiste recibir el item");
-
             }
         }
         nextTurn();
@@ -158,11 +156,15 @@ public class BlockShotGame {
 
                 int damage = shotGun.isSawedOff() ? 2 : 1;
 
-                targetPlayer.damage(damage);
+                targetPlayer.takeDamage(shooterPlayer, damage);
                 shooterPlayer.setPlayerState(PlayerState.WAITING);
                 turnManager.next();
                 nextTurn();
             }
+        }
+        if (shotGun.isSawedOff()){
+            shotGun.setSawedOff(false);
+            //podriamos llamar evento de que se le quita lo recortada
         }
     }
 

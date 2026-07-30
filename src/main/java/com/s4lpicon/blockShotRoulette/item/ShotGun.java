@@ -49,7 +49,7 @@ public class ShotGun {
     }
 
     public ShellType peek(){
-        return this.shells.getLast();
+        return this.shells.getFirst();
     }
 
     public ShellType removeFirst(){
