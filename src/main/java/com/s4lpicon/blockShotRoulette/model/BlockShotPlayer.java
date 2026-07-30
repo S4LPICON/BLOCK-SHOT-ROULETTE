@@ -1,7 +1,7 @@
 package com.s4lpicon.blockShotRoulette.model;
 
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerDamageEvent;
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerDeathEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDeathEvent;
 import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.manager.ItemManager;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;

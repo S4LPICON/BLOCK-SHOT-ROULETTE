@@ -1,10 +1,8 @@
 package com.s4lpicon.blockShotRoulette.listener;
 
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerShootEvent;
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerUseItemEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerUseItemEvent;
 import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.manager.ItemEffectManager;
-import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 

@@ -1,10 +1,7 @@
 package com.s4lpicon.blockShotRoulette.command;
 
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerShootEvent;
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerUseItemEvent;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

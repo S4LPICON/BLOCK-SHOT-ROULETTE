@@ -1,7 +1,7 @@
 package com.s4lpicon.blockShotRoulette.listener;
 
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerShootEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootEvent;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import com.s4lpicon.blockShotRoulette.task.AimTask;
 import org.bukkit.Bukkit;
@@ -61,6 +61,7 @@ public class PlayerInteractListener implements Listener {
 
     private void handleShotEvent(BlockShotPlayer shooter, Entity entity){
 
+        if (shooter.getAimTask() == null)return;
 
 
         shooter.getPlayer().sendMessage("Listener triggered");

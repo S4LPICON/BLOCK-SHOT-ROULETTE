@@ -1,4 +1,4 @@
-package com.s4lpicon.blockShotRoulette.event;
+package com.s4lpicon.blockShotRoulette.event.player;
 
 import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;

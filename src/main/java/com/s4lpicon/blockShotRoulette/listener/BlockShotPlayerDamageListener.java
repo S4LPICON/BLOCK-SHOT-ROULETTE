@@ -1,6 +1,6 @@
 package com.s4lpicon.blockShotRoulette.listener;
 
-import com.s4lpicon.blockShotRoulette.event.BlockShotPlayerDamageEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
