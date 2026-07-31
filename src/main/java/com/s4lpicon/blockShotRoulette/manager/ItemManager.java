@@ -4,12 +4,14 @@ import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemGiveFailedEvent;
 import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemGivenEvent;
 import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemRemovedEvent;
 import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemUsedEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerItemsClearedEvent;
 import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import org.bukkit.Bukkit;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemManager {
 
@@ -128,6 +130,19 @@ public class ItemManager {
     // Limpiar todos los ítems
     public void clear(BlockShotPlayer blockShotPlayer) {
 
-        Arrays.fill(blockShotPlayer.getItems(), null);
+        com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType[] items = blockShotPlayer.getItems();
+
+        List<com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType> removedItems = Arrays.stream(items)
+                .filter(Objects::nonNull)
+                .toList();
+
+        Arrays.fill(items, null);
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotPlayerItemsClearedEvent(
+                        blockShotPlayer,
+                        removedItems
+                )
+        );
     }
 }

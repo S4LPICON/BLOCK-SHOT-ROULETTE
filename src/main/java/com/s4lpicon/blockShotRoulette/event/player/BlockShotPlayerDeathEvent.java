@@ -1,6 +1,6 @@
 package com.s4lpicon.blockShotRoulette.event.player;
 
-import com.s4lpicon.blockShotRoulette.event.player.model.DeathReason;
+import com.s4lpicon.blockShotRoulette.event.player.model.DamageReason;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -12,10 +12,10 @@ public class BlockShotPlayerDeathEvent extends Event {
 
     private final BlockShotPlayer killer;
     private final BlockShotPlayer victim;
-    private final DeathReason reason;
+    private final DamageReason reason;
 
 
-    public BlockShotPlayerDeathEvent(BlockShotPlayer victim, BlockShotPlayer killer, DeathReason reason) {
+    public BlockShotPlayerDeathEvent(BlockShotPlayer victim, BlockShotPlayer killer, DamageReason reason) {
         this.victim = victim;
         this.killer = killer;
         this.reason = reason;
@@ -29,7 +29,7 @@ public class BlockShotPlayerDeathEvent extends Event {
         return this.victim;
     }
 
-    public DeathReason getReason() {
+    public DamageReason getReason() {
         return reason;
     }
 

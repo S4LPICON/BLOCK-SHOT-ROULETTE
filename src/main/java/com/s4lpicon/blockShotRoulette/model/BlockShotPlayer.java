@@ -1,14 +1,10 @@
 package com.s4lpicon.blockShotRoulette.model;
 
-import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
-import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDeathEvent;
-import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerHealEvent;
-import com.s4lpicon.blockShotRoulette.event.player.model.DeathReason;
+
 import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
 import com.s4lpicon.blockShotRoulette.task.AimItemTask;
 import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class BlockShotPlayer {
@@ -28,7 +24,6 @@ public class BlockShotPlayer {
         this.blockShotGame = blockShotGame;
     }
 
-
     public Player getPlayer(){
         return this.player;
     }
@@ -37,58 +32,24 @@ public class BlockShotPlayer {
         this.energy = energy;
     }
 
-
     public int getEnergy(){
         return this.energy;
     }
 
     public void addEnergy(int amount){
-
         this.energy += amount;
-
-        Bukkit.getPluginManager().callEvent(
-                new BlockShotPlayerHealEvent(
-                        this,
-                        amount
-                )
-        );
     }
 
-    public void takeDamage(BlockShotPlayer damager, int amount){
+    public void takeDamage( int amount) {
 
-        if(playerState == PlayerState.DEAD){
+        if (playerState == PlayerState.DEAD) {
             return;
         }
-
         this.energy -= amount;
-
-        Bukkit.getPluginManager().callEvent(
-                new BlockShotPlayerDamageEvent(
-                        damager,
-                        this,
-                        amount
-                )
-        );
-
-        if(this.energy <= 0){
-            die(damager);
-        }
     }
 
-    public void die(BlockShotPlayer killer) {
+    public void kill() {
         this.playerState = PlayerState.DEAD;
-
-        DeathReason reason = killer == this
-                ? DeathReason.SELF_SHOT
-                : DeathReason.PLAYER_SHOT;
-
-        Bukkit.getPluginManager().callEvent(
-                new BlockShotPlayerDeathEvent(
-                        this,
-                        killer,
-                        reason
-                )
-        );
     }
 
     public PlayerState getPlayerState(){

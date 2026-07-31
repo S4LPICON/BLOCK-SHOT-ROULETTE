@@ -5,13 +5,13 @@ public class RoundSettings {
     private final int lives;
     private final int liveShells;
     private final int blankShells;
-    private final int itemCount;
+    private final int itemsPerPlayer;
 
-    public RoundSettings(int lives, int liveShells, int blankShells, int itemCount) {
+    public RoundSettings(int lives, int liveShells, int blankShells, int itemsPerPlayer) {
         this.lives = lives;
         this.liveShells = liveShells;
         this.blankShells = blankShells;
-        this.itemCount = itemCount;
+        this.itemsPerPlayer = itemsPerPlayer;
     }
 
     public int getLives() {
@@ -27,6 +27,6 @@ public class RoundSettings {
     }
 
     public int getItemsPerPlayer(){
-        return itemCount;
+        return itemsPerPlayer;
     }
 }

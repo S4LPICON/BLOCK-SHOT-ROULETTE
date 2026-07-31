@@ -1,9 +1,16 @@
 package com.s4lpicon.blockShotRoulette.model;
 
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
+import com.s4lpicon.blockShotRoulette.event.EventDispatcher;
+import com.s4lpicon.blockShotRoulette.event.match.BlockShotMatchEndEvent;
+import com.s4lpicon.blockShotRoulette.event.match.BlockShotMatchStartEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDeathEvent;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootDeniedEvent;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootEvent;
+import com.s4lpicon.blockShotRoulette.event.player.model.DamageReason;
 import com.s4lpicon.blockShotRoulette.event.player.model.ShootDeniedReason;
+import com.s4lpicon.blockShotRoulette.event.round.BlockShotRoundStartEvent;
 import com.s4lpicon.blockShotRoulette.event.turn.BlockShotTurnEndEvent;
 import com.s4lpicon.blockShotRoulette.event.turn.BlockShotTurnStartEvent;
 import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
@@ -26,8 +33,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class BlockShotGame {
 
@@ -37,11 +44,14 @@ public class BlockShotGame {
     private GameState gameState = GameState.WAITING;
     private final ItemManager itemManager;
     private final BlockShotRoulette plugin;
-    //private int sequence = 1;
+
+
+    private final EventDispatcher eventDispatcher;
+    //prívate int sequence = 1;
     private int round = 0;
 
 
-    public BlockShotGame(@NotNull  List<Player> players, BlockShotRoulette plugin) {
+    public BlockShotGame(@NotNull  List<Player> players, BlockShotRoulette plugin, EventDispatcher eventDispatcher) {
         if (players.size() > 4) {
             throw new IllegalArgumentException("A BlockShotGame can have a maximum of 4 players.");
         }
@@ -53,22 +63,41 @@ public class BlockShotGame {
         this.plugin = plugin;
         this.turnManager = new TurnManager(this.players);
         this.itemManager = plugin.getItemManager();
+        this.eventDispatcher = eventDispatcher;
     }
 
     public void startGame(){
         this.gameState = GameState.STARTING;
-        //TODO call BlockShotMatchStartEvent
+        eventDispatcher.call(
+                new BlockShotMatchStartEvent(
+                        this
+                )
+        );
         startRound();
     }
 
     public void endGame(){
         //TODO logica para terminar el juego
-        //TODO call BlockShotMatchEndEvent
+        eventDispatcher.call(
+                new BlockShotMatchEndEvent(
+                        turnManager.getActualTurnPlayer(), //apuesto a que si en la ultima ronda me mato gano todo
+                        this
+                )
+        );
     }
 
     public void startRound() {
-        RoundSettings roundSettings = RoundRegistry.ROUNDS.get(round); //TODO aqui se daña cuando se llega a la ronda 4 (implementar logica de terminar juego)
-        //TODO: llamar a el evento BlockShotRoundStartEvent
+        if (round >= RoundRegistry.ROUNDS.size()){
+            endGame();
+            return;
+        }
+
+        RoundSettings roundSettings = RoundRegistry.ROUNDS.get(round);
+        eventDispatcher.call(
+                new BlockShotRoundStartEvent(
+                        this
+                )
+        );
         resetPlayerStates(roundSettings);
         startSequence(roundSettings);
     }
@@ -78,6 +107,8 @@ public class BlockShotGame {
             player.setEnergy(roundSettings.getLives());
             // RESTABLECER ESTADO DE LOS JUGADORES:
             player.setPlayerState(PlayerState.WAITING);
+            itemManager.clear(player);
+
             if (player.getPlayer().getGameMode() == GameMode.SPECTATOR ){
                 player.getPlayer().setGameMode(GameMode.ADVENTURE);
             }
@@ -118,6 +149,7 @@ public class BlockShotGame {
 
         if(hasRoundEnded()){
             endRound();
+            round++;
             startNextRound();
             return;
         }
@@ -128,8 +160,6 @@ public class BlockShotGame {
         }
 
         BlockShotPlayer player = turnManager.getActualTurnPlayer();
-
-        sendTurnInfo(player);
         startTurn(player);
     }
 
@@ -143,12 +173,6 @@ public class BlockShotGame {
     }
 
     private void startNextRound(){
-
-        round++;
-
-        Bukkit.broadcast(
-                Component.text("EMPEZANDO LA RONDA: " + round)
-        );
 
         TaskUtil.waitTicks(40, () -> Bukkit.getScheduler().runTask(
                 plugin,
@@ -166,28 +190,6 @@ public class BlockShotGame {
                 )
         );
     }
-    @Deprecated(forRemoval = true)
-    private void sendTurnInfo(BlockShotPlayer turnPlayer){
-
-        for(BlockShotPlayer player : players){
-
-            player.getPlayer().sendMessage(
-                    "Ahora le toca a: " + turnPlayer.getPlayer().getName()
-            );
-
-            player.getPlayer().sendMessage(
-                    "Balas: " + shotGun
-            );
-
-            player.getPlayer().sendMessage(
-                    "Items: " + Arrays.toString(player.getItems())
-            );
-
-            player.getPlayer().sendMessage(
-                    "Vidas: " + player.getEnergy()
-            );
-        }
-    }
 
     public void startTurn(@NotNull BlockShotPlayer player){
         //task para que pueda apuntar a un jugador
@@ -204,7 +206,7 @@ public class BlockShotGame {
         player.setAimTask(aimPlayerTask);
         //-----------------------------------------
 
-        Bukkit.getPluginManager().callEvent(
+        eventDispatcher.call(
                 new BlockShotTurnStartEvent(
                         this,
                         player
@@ -217,7 +219,7 @@ public class BlockShotGame {
     public void handleShoot(BlockShotPlayer shooter, BlockShotPlayer target){
 
         if (shooter.getPlayerState() == PlayerState.DEAD) {
-            Bukkit.getPluginManager().callEvent(
+            eventDispatcher.call(
                     new BlockShotPlayerShootDeniedEvent(
                             shooter,
                             ShootDeniedReason.DEAD
@@ -227,7 +229,7 @@ public class BlockShotGame {
         }
 
         if (shooter.getPlayerState() == PlayerState.WAITING) {
-            Bukkit.getPluginManager().callEvent(
+            eventDispatcher.call(
                     new BlockShotPlayerShootDeniedEvent(
                             shooter,
                             ShootDeniedReason.NOT_YOUR_TURN
@@ -265,15 +267,13 @@ public class BlockShotGame {
             }
 
             case LIVE -> {
-                int damage = shotGun.getState() == ShotGunState.SAWED_OFF ? 2 : 1;
-
                 shooterPlayer.setPlayerState(PlayerState.WAITING);
+                damagePlayer(shooterPlayer, targetPlayer);
 
-                targetPlayer.takeDamage(shooterPlayer, damage);
             }
         }
 
-        Bukkit.getPluginManager().callEvent(
+        eventDispatcher.call(
                 new BlockShotPlayerShootEvent(
                         shooterPlayer,
                         targetPlayer,
@@ -282,7 +282,7 @@ public class BlockShotGame {
         );
 
         if (endTurn) {
-            Bukkit.getPluginManager().callEvent(
+            eventDispatcher.call(
                     new BlockShotTurnEndEvent(
                             this,
                             shooterPlayer
@@ -299,6 +299,50 @@ public class BlockShotGame {
         }
     }
 
+    public void damagePlayer(BlockShotPlayer damager, BlockShotPlayer target){
+
+        int amount = shotGun.getState() == ShotGunState.SAWED_OFF ? 2 : 1;
+
+        target.takeDamage(amount);
+        eventDispatcher.call(
+                new BlockShotPlayerDamageEvent(
+                        damager,
+                        target,
+                        amount
+                )
+        );
+
+        if (target.getEnergy() <= 0) {
+
+            DamageReason reason = damager == target
+                    ? DamageReason.SELF_SHOT
+                    : DamageReason.PLAYER_SHOT;
+
+            target.kill();
+            eventDispatcher.call(
+                    new BlockShotPlayerDeathEvent(
+                            target,
+                            damager,
+                            DamageReason.PLAYER_SHOT
+                    )
+            );
+        }
+
+    }
+
+    public void ejectShell(BlockShotPlayer player) {
+
+        Optional<ShellType> shell = shotGun.ejectFirstShell();
+
+        if (shell.isEmpty()) {
+            return;
+        }
+
+        if (shotGun.isEmpty()) {
+            processNextTurn();
+        }
+    }
+
 
     public GameState getGameState(){
         return this.gameState;
@@ -311,5 +355,9 @@ public class BlockShotGame {
 
     public ShotGun getShotGun(){
         return this.shotGun;
+    }
+
+    public EventDispatcher getEventDispatcher() {
+        return eventDispatcher;
     }
 }

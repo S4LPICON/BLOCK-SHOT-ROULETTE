@@ -2,11 +2,14 @@ package com.s4lpicon.blockShotRoulette;
 
 import com.s4lpicon.blockShotRoulette.command.TestCommand;
 import com.s4lpicon.blockShotRoulette.command.UseItemTestCommand;
+import com.s4lpicon.blockShotRoulette.event.EventDispatcher;
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemGiveFailedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemGivenListener;
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemRemovedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemUsedListener;
+import com.s4lpicon.blockShotRoulette.listener.game.match.BlockShotMatchEndListener;
 import com.s4lpicon.blockShotRoulette.listener.game.player.*;
+import com.s4lpicon.blockShotRoulette.listener.game.shotgun.BlockShotShotgunShellEjectedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.turn.BlockShotTurnEndListener;
 import com.s4lpicon.blockShotRoulette.listener.game.turn.BlockShotTurnStartListener;
 import com.s4lpicon.blockShotRoulette.listener.vanilla.PlayerInteractListener;
@@ -33,6 +36,8 @@ public final class BlockShotRoulette extends JavaPlugin {
 
     private final ItemManager itemManager = new ItemManager(itemEffectManager);
 
+    private final EventDispatcher eventDispatcher = new EventDispatcher();
+
     @Override
     public void onEnable() {
         instance = this;
@@ -41,6 +46,8 @@ public final class BlockShotRoulette extends JavaPlugin {
         registerPlayerListeners();
         registerItemsListeners();
         registerTurnsListeners();
+        registerShotgunListeners();
+
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand(this));
 
         Objects.requireNonNull(getCommand("use-item")).setExecutor(new UseItemTestCommand(this));
@@ -79,6 +86,20 @@ public final class BlockShotRoulette extends JavaPlugin {
         registerListeners(
                 new BlockShotTurnStartListener(),
                 new BlockShotTurnEndListener()
+
+        );
+    }
+
+    private void registerShotgunListeners() {
+        registerListeners(
+                new BlockShotShotgunShellEjectedListener()
+
+        );
+    }
+
+    private void registerMatchListeners() {
+        registerListeners(
+                new BlockShotMatchEndListener()
 
         );
     }
