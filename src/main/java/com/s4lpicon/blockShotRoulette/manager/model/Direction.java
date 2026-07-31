@@ -1,4 +1,4 @@
-package com.s4lpicon.blockShotRoulette.manager;
+package com.s4lpicon.blockShotRoulette.manager.model;
 
 public enum Direction {
     CLOCKWISE,

@@ -1,21 +1,28 @@
 package com.s4lpicon.blockShotRoulette.model;
 
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootDeniedEvent;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootEvent;
+import com.s4lpicon.blockShotRoulette.event.player.model.ShootDeniedReason;
+import com.s4lpicon.blockShotRoulette.event.turn.BlockShotTurnEndEvent;
+import com.s4lpicon.blockShotRoulette.event.turn.BlockShotTurnStartEvent;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.item.ShotGun;
+import com.s4lpicon.blockShotRoulette.item.type.ShellType;
 import com.s4lpicon.blockShotRoulette.manager.ItemManager;
 import com.s4lpicon.blockShotRoulette.registry.RoundRegistry;
 import com.s4lpicon.blockShotRoulette.registry.settings.RoundSettings;
 import com.s4lpicon.blockShotRoulette.manager.TurnManager;
 import com.s4lpicon.blockShotRoulette.state.GameState;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
-import com.s4lpicon.blockShotRoulette.task.AimTask;
+import com.s4lpicon.blockShotRoulette.state.ShotGunState;
+import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
 import com.s4lpicon.blockShotRoulette.util.ItemPoolUtil;
 import com.s4lpicon.blockShotRoulette.util.TaskUtil;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -26,40 +33,47 @@ public class BlockShotGame {
 
     private final List<@NotNull BlockShotPlayer> players = new ArrayList<>(4);
     private final TurnManager turnManager;
-    private ShotGun shotGun;
+    private final ShotGun shotGun;
     private GameState gameState = GameState.WAITING;
-    private final JavaPlugin plugin;
-    private int sequence = 1;
+    private final ItemManager itemManager;
+    private final BlockShotRoulette plugin;
+    //private int sequence = 1;
     private int round = 0;
 
 
-    AimTask aimTask;
-    //AimItemTask aimItemTask;
-
-
-
-    public BlockShotGame(@NotNull  List<Player> players, JavaPlugin plugin) {
+    public BlockShotGame(@NotNull  List<Player> players, BlockShotRoulette plugin) {
         if (players.size() > 4) {
             throw new IllegalArgumentException("A BlockShotGame can have a maximum of 4 players.");
         }
-
+        int MAX_SHELLS = 10;
+        this.shotGun = new ShotGun(MAX_SHELLS);
         for (Player player : players){
             this.players.add(new BlockShotPlayer(player, this));
         }
         this.plugin = plugin;
         this.turnManager = new TurnManager(this.players);
+        this.itemManager = plugin.getItemManager();
     }
 
     public void startGame(){
         this.gameState = GameState.STARTING;
-
+        //TODO call BlockShotMatchStartEvent
         startRound();
+    }
 
+    public void endGame(){
+        //TODO logica para terminar el juego
+        //TODO call BlockShotMatchEndEvent
     }
 
     public void startRound() {
-        RoundSettings roundSettings = RoundRegistry.ROUNDS.get(round);
+        RoundSettings roundSettings = RoundRegistry.ROUNDS.get(round); //TODO aqui se daña cuando se llega a la ronda 4 (implementar logica de terminar juego)
+        //TODO: llamar a el evento BlockShotRoundStartEvent
+        resetPlayerStates(roundSettings);
+        startSequence(roundSettings);
+    }
 
+    public void resetPlayerStates(RoundSettings roundSettings){
         for (BlockShotPlayer player : players) {
             player.setEnergy(roundSettings.getLives());
             // RESTABLECER ESTADO DE LOS JUGADORES:
@@ -68,86 +82,134 @@ public class BlockShotGame {
                 player.getPlayer().setGameMode(GameMode.ADVENTURE);
             }
         }
-
-        startSequence();
     }
 
-    public void startSequence(){
-        RoundSettings roundSettings = RoundRegistry.ROUNDS.get(round);//duplicado
-
-        this.shotGun = new ShotGun(roundSettings.getLiveShells(), roundSettings.getBlankShells()); //recarga la escopeta
-
+    public void giveItems(RoundSettings roundSettings){
         //da los items
         for (BlockShotPlayer player : players) {
-            ItemManager itemManager = player.getItemManager();
             for (int i = 0; i < roundSettings.getItemsPerPlayer(); i++) {
 
                 BlockShotItemType item = ItemPoolUtil.randomItem();
 
-                if (itemManager.giveItem(item)){
-                    player.getPlayer().sendMessage("Has recibo un: "+ item);
-                }else {
-                    player.getPlayer().sendMessage("NO pudiste recibir el item");
-                }
+                itemManager.giveItem(player, item);
             }
         }
-        nextTurn();
+    }
+
+    public void startSequence(RoundSettings roundSettings){
+
+        reloadShotGun(roundSettings);
+        giveItems(roundSettings);
+        processNextTurn();
+    }
+
+    public void reloadShotGun(RoundSettings roundSettings){
+        this.shotGun.reload(roundSettings.getLiveShells(), roundSettings.getBlankShells()); //recarga la escopeta
     }
 
 
     public void endRound(){
-        for (BlockShotPlayer player : players){
-            player.getPlayer().sendMessage("FIN DE LA RONDA");
-        }
-        //nueva ronda
+        //TODO: llama al evento BlockShotRoundEndEvent
+        //TODO eliminar todos los items de todos los jugadores
+        //TODO entregarle el premio al ganador
     }
 
+    public void processNextTurn(){
 
-    public void nextTurn() {
-        int playersAlive = 0;
-        for (BlockShotPlayer player : players) {
-            if (!player.getPlayerState().equals(PlayerState.DEAD)) {
-                playersAlive++;
-            }
-        }
-
-        if (playersAlive < 2) {
-            Bukkit.getServer().broadcast(Component.text("YA MURIERON EMPEZANDO NUEVA RONDA"));
-            round++;
-            Bukkit.getServer().broadcast(Component.text("EMPEZANDO LA RONDA: "+ round+1));
-            TaskUtil.waitTicks(40, () ->{
-                // Ejecutar en el siguiente tick para vaciar el call stack actual
-                Bukkit.getScheduler().runTask(plugin, this::startRound);
-            });
+        if(hasRoundEnded()){
+            endRound();
+            startNextRound();
             return;
         }
 
-        Bukkit.getServer().broadcast(Component.text("COMO HAY MAS DE 1 CON VIDA SIGUE LA MISMA RONDA"));
-
-        if (shotGun.isEmpty()) {
-            Bukkit.getServer().broadcast(Component.text("SE QUEDO SIN BALAS LA ESCOPETA, CAMBIANDO A OTRA SECUENCIA"));
-
-            // Ejecutar en el siguiente tick
-            Bukkit.getScheduler().runTask(plugin, this::startSequence);
+        if(shotGun.isEmpty()){
+            startNextSequence();
             return;
         }
 
-        BlockShotPlayer turnPlayer = turnManager.getActualTurnPlayer();
-        for (BlockShotPlayer player : players) {
-            player.getPlayer().sendMessage("Ahora le toca a:" + turnPlayer.getPlayer().getName());
-            player.getPlayer().sendMessage("Orden de las balas: " + shotGun.toString());
-            player.getPlayer().sendMessage("tus items son: " + Arrays.toString(player.getItems()));
-            player.getPlayer().sendMessage("te quedan " + player.getEnergy() + " vidas");
+        BlockShotPlayer player = turnManager.getActualTurnPlayer();
+
+        sendTurnInfo(player);
+        startTurn(player);
+    }
+
+    private boolean hasRoundEnded(){
+
+        long alivePlayers = players.stream()
+                .filter(player -> player.getPlayerState() != PlayerState.DEAD)
+                .count();
+
+        return alivePlayers < 2;
+    }
+
+    private void startNextRound(){
+
+        round++;
+
+        Bukkit.broadcast(
+                Component.text("EMPEZANDO LA RONDA: " + round)
+        );
+
+        TaskUtil.waitTicks(40, () -> Bukkit.getScheduler().runTask(
+                plugin,
+                this::startRound
+        ));
+    }
+
+    private void startNextSequence(){
+        //TODO call BlockShotRoundReloadEvent
+
+        Bukkit.getScheduler().runTask(
+                plugin,
+                () -> startSequence(
+                        RoundRegistry.ROUNDS.get(round)
+                )
+        );
+    }
+    @Deprecated(forRemoval = true)
+    private void sendTurnInfo(BlockShotPlayer turnPlayer){
+
+        for(BlockShotPlayer player : players){
+
+            player.getPlayer().sendMessage(
+                    "Ahora le toca a: " + turnPlayer.getPlayer().getName()
+            );
+
+            player.getPlayer().sendMessage(
+                    "Balas: " + shotGun
+            );
+
+            player.getPlayer().sendMessage(
+                    "Items: " + Arrays.toString(player.getItems())
+            );
+
+            player.getPlayer().sendMessage(
+                    "Vidas: " + player.getEnergy()
+            );
         }
-        startTurn(turnPlayer);
     }
 
     public void startTurn(@NotNull BlockShotPlayer player){
-        this.aimTask = new AimTask(player.getPlayer());
-        aimTask.runTaskTimer(plugin, 0L, 1L);
-        player.setAimTask(aimTask);
+        //task para que pueda apuntar a un jugador
+        /*TODO
+        *  separar en un metodo el dar el aimtask
+        *  implementar el AimItemTask al inicio de la ronda en lugar de AimPlayerTask
+        *  cuando seleccionen la escopeta ahi si se le da el aimtask
+        *
+        * */
+        AimPlayerTask aimPlayerTask = new AimPlayerTask(player.getPlayer());
 
-        player.getPlayer().sendMessage("Te toca a ti elije a quien disparar");
+        aimPlayerTask.runTaskTimer(plugin,0L,1L);
+
+        player.setAimTask(aimPlayerTask);
+        //-----------------------------------------
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotTurnStartEvent(
+                        this,
+                        player
+                )
+        );
 
         player.setPlayerState(PlayerState.PLAYING);
 
@@ -155,57 +217,85 @@ public class BlockShotGame {
     public void handleShoot(BlockShotPlayer shooter, BlockShotPlayer target){
 
         if (shooter.getPlayerState() == PlayerState.DEAD) {
-            shooter.getPlayer().sendMessage("Estás muerto.");
+            Bukkit.getPluginManager().callEvent(
+                    new BlockShotPlayerShootDeniedEvent(
+                            shooter,
+                            ShootDeniedReason.DEAD
+                    )
+            );
             return;
         }
 
         if (shooter.getPlayerState() == PlayerState.WAITING) {
-            shooter.getPlayer().sendMessage("No es tu turno.");
+            Bukkit.getPluginManager().callEvent(
+                    new BlockShotPlayerShootDeniedEvent(
+                            shooter,
+                            ShootDeniedReason.NOT_YOUR_TURN
+                    )
+            );
             return;
         }
-
-        if (shooter.getPlayer().getName().equalsIgnoreCase(target.getPlayer().getName())){
-            shooter.getPlayer().sendMessage("Te disparaste tu mismo!");
-        }else {
-            shooter.getPlayer().sendMessage("disparaste a: "+ target.getPlayer().getName());
-        }
-
+        //TODO implementar un sistema para configurar el tiempo antes de ejecutar el shoot
         shoot(shooter, target);
     }
 
     public void shoot(BlockShotPlayer shooterPlayer, BlockShotPlayer targetPlayer) {
-        if (shotGun.isEmpty()){
+
+        if (shotGun.isEmpty()) {
             return;
         }
-        if (!(shooterPlayer.getAimTask() == null)){
+
+        if (shooterPlayer.getAimTask() != null) {
             shooterPlayer.getAimTask().stop();
         }
 
-        switch (shotGun.shoot()) {
+        boolean endTurn = true;
+
+        ShellType shell = shotGun.shoot();
+
+        switch (shell) {
 
             case BLANK -> {
                 boolean shotSelf = shooterPlayer.equals(targetPlayer);
+
+                // bala vacía a uno mismo = conserva turno
                 if (shotSelf) {
-                    nextTurn();
-                } else {
-                    turnManager.next();
-                    nextTurn();
+                    endTurn = false;
                 }
             }
 
             case LIVE -> {
+                int damage = shotGun.getState() == ShotGunState.SAWED_OFF ? 2 : 1;
 
-                int damage = shotGun.isSawedOff() ? 2 : 1;
+                shooterPlayer.setPlayerState(PlayerState.WAITING);
 
                 targetPlayer.takeDamage(shooterPlayer, damage);
-                shooterPlayer.setPlayerState(PlayerState.WAITING);
-                turnManager.next();
-                nextTurn();
             }
         }
-        if (shotGun.isSawedOff()){
-            shotGun.setSawedOff(false);
-            //podriamos llamar evento de que se le quita lo recortada
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotPlayerShootEvent(
+                        shooterPlayer,
+                        targetPlayer,
+                        shell
+                )
+        );
+
+        if (endTurn) {
+            Bukkit.getPluginManager().callEvent(
+                    new BlockShotTurnEndEvent(
+                            this,
+                            shooterPlayer
+                    )
+            );
+
+            turnManager.next();
+        }
+
+        processNextTurn();
+
+        if (shotGun.getState() == ShotGunState.SAWED_OFF) {
+            shotGun.setState(ShotGunState.NORMAL);
         }
     }
 

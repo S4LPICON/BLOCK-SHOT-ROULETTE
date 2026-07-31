@@ -1,61 +1,68 @@
 package com.s4lpicon.blockShotRoulette.item;
 
+import com.s4lpicon.blockShotRoulette.event.shotgun.BlockShotShotgunStateChangedEvent;
+import com.s4lpicon.blockShotRoulette.item.type.ShellType;
+import com.s4lpicon.blockShotRoulette.state.ShotGunState;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class ShotGun {
 
-    private final List<ShellType> shells ;
-    private boolean sawedOff;
+    private final Deque<ShellType> shells = new ArrayDeque<>();
+    private ShotGunState state = ShotGunState.NORMAL;
+    private final int maxShells;
 
-    public ShotGun(int liveShells, int blankShells){
-        this.shells = reloadShotGun(liveShells, blankShells);
+
+
+    public ShotGun(int maxShells) {
+        this.maxShells = maxShells;
     }
 
-    public List<ShellType> reloadShotGun(int liveShells, int blankShells) {
-        List<ShellType> shotgun = new ArrayList<>(liveShells + blankShells);
+    public void reload(int liveShells, int blankShells) {
+
+        if (liveShells + blankShells > maxShells) {
+            throw new IllegalArgumentException("Too many shells");
+        }
+        //TODO call BlockShotShotgunReloadEvent
+
+        shells.clear();
+
+        List<ShellType> newShells = new ArrayList<>();
 
         for (int i = 0; i < liveShells; i++) {
-            shotgun.add(ShellType.LIVE);
+            newShells.add(ShellType.LIVE);
         }
 
         for (int i = 0; i < blankShells; i++) {
-            shotgun.add(ShellType.BLANK);
+            newShells.add(ShellType.BLANK);
         }
 
-        Collections.shuffle(shotgun);
+        Collections.shuffle(newShells);
 
-        return shotgun;
-    }
-    public boolean isSawedOff() {
-        return sawedOff;
+        shells.addAll(newShells);
     }
     public boolean isEmpty(){
         return shells.isEmpty();
     }
 
-    public void setSawedOff(boolean sawedOff) {
-        this.sawedOff = sawedOff;
-    }
-
     public ShellType shoot(){
-        ShellType shell = shells.getFirst();
-        shells.removeFirst();
-        return shell;
-
+        //TODO call BlockShotShotgunShootEvent
+        return shells.removeFirst();
     }
 
-    public ShellType peek(){
-        return this.shells.getFirst();
+    public Optional<ShellType> peek(){
+        //TODO call BlockShotShotgunPeekEvent
+        return Optional.ofNullable(shells.peekFirst());
     }
 
-    public ShellType removeFirst(){
-        return this.shells.removeFirst();
+    public Optional<ShellType> ejectShell() {
+        //TODO call BlockShotShotgunShellEjectedEvent
+        return Optional.ofNullable(shells.pollFirst());
     }
 
+    @Deprecated(forRemoval = true)
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
@@ -71,4 +78,25 @@ public class ShotGun {
         return builder.toString();
     }
 
+    public ShotGunState getState() {
+        return state;
+    }
+
+    public void setState(ShotGunState newState) {
+        //TODO call BlockShotShotgunStateChangedEvent
+        if (this.state == newState) {
+            return;
+        }
+
+        ShotGunState oldState = this.state;
+        this.state = newState;
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotShotgunStateChangedEvent(
+                        this,
+                        oldState,
+                        newState
+                )
+        );
+    }
 }

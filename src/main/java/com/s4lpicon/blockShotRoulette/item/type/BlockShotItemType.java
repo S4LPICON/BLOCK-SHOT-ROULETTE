@@ -1,4 +1,4 @@
-package com.s4lpicon.blockShotRoulette.item;
+package com.s4lpicon.blockShotRoulette.item.type;
 
 public enum BlockShotItemType {
 

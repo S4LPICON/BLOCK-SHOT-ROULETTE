@@ -2,17 +2,16 @@ package com.s4lpicon.blockShotRoulette.task;
 
 import com.s4lpicon.blockShotRoulette.util.TargetUtil;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class AimTask extends BukkitRunnable {
+public class AimPlayerTask extends BukkitRunnable {
 
     private final Player player;
     private Entity currentTarget;
 
-    public AimTask(Player player) {
+    public AimPlayerTask(Player player) {
         this.player = player;
     }
 

@@ -9,12 +9,16 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class UseItemTestCommand implements CommandExecutor {
+
+    private final BlockShotRoulette plugin;
+
+    public UseItemTestCommand(BlockShotRoulette plugin){
+        this.plugin = plugin;
+    }
+
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-
-        if (!command.getName().equalsIgnoreCase("use-item")){
-            return true;
-        }
         if (!(sender instanceof Player player)){
             return true;
         }
@@ -30,7 +34,7 @@ public class UseItemTestCommand implements CommandExecutor {
         }
         try {
             int slot = Integer.parseInt(args[0]);
-            whoUseItem.getItemManager().useItem(slot);
+            plugin.getItemManager().useItem(whoUseItem, slot);
         } catch (NumberFormatException e) {
             sender.sendMessage("El slot debe ser un número.");
         }

@@ -1,10 +1,8 @@
-package com.s4lpicon.blockShotRoulette.listener;
+package com.s4lpicon.blockShotRoulette.listener.vanilla;
 
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
-import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerShootEvent;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
-import com.s4lpicon.blockShotRoulette.task.AimTask;
-import org.bukkit.Bukkit;
+import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Interaction;
 import org.bukkit.entity.Player;
@@ -32,7 +30,7 @@ public class PlayerInteractListener implements Listener {
 
         if (shooter==null) return;
 
-        AimTask task = shooter.getAimTask();
+        AimPlayerTask task = shooter.getAimTask();
 
         if (task == null) return;
 
@@ -85,9 +83,7 @@ public class PlayerInteractListener implements Listener {
         }
 
 
-        Bukkit.getPluginManager().callEvent(
-                new BlockShotPlayerShootEvent(shooter, target)
-        );
+        shooter.getBlockShotGame().handleShoot(shooter, target);
     }
 
 }

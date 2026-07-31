@@ -1,5 +1,6 @@
 package com.s4lpicon.blockShotRoulette.manager;
 
+import com.s4lpicon.blockShotRoulette.manager.model.Direction;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 
 import java.util.List;

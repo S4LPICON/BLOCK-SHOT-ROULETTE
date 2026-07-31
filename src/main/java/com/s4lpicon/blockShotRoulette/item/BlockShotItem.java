@@ -1,8 +1,8 @@
 package com.s4lpicon.blockShotRoulette.item;
 
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.model.ItemFactory;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.ItemDisplay;
 import org.bukkit.inventory.ItemStack;
 

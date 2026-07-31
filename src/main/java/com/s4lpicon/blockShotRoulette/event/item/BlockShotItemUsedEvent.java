@@ -1,21 +1,19 @@
-package com.s4lpicon.blockShotRoulette.event.player;
+package com.s4lpicon.blockShotRoulette.event.item;
 
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class BlockShotPlayerUseItemEvent extends Event {
-
-
+public class BlockShotItemUsedEvent extends Event {
     private final BlockShotPlayer player;
     private final BlockShotItemType type;
     private final int slot;
 
     private static final HandlerList HANDLERS = new HandlerList();
 
-    public BlockShotPlayerUseItemEvent(BlockShotPlayer player, BlockShotItemType type, int slot) {
+    public BlockShotItemUsedEvent(BlockShotPlayer player, BlockShotItemType type, int slot) {
         this.player = player;
         this.type = type;
         this.slot = slot;

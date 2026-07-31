@@ -1,4 +1,4 @@
-package com.s4lpicon.blockShotRoulette.listener;
+package com.s4lpicon.blockShotRoulette.listener.game.player;
 
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDeathEvent;
 import org.bukkit.GameMode;

@@ -1,6 +1,6 @@
 package com.s4lpicon.blockShotRoulette.model;
 
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;

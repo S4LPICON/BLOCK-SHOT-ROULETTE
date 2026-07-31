@@ -1,8 +1,11 @@
 package com.s4lpicon.blockShotRoulette.manager;
 
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
-import com.s4lpicon.blockShotRoulette.item.ShellType;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.item.type.ShellType;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
+import com.s4lpicon.blockShotRoulette.state.ShotGunState;
+
+import java.util.Optional;
 
 public class ItemEffectManager {
 
@@ -18,28 +21,32 @@ public class ItemEffectManager {
 
             case HANDCUFFS -> useHandcuffs(player);
 
+            case CIGARETTE_PACK -> useCigarettePack(player);
+
             default -> {
             }
         }
     }
 
+    private void useCigarettePack(BlockShotPlayer player){
+        player.addEnergy(1);
+    }
+
 
     private void useBeer(BlockShotPlayer player) {
-        // quitar una bala de la escopeta
-        player.getBlockShotGame().getShotGun().removeFirst();
-        //TODO: debe mostrar la bala
+        Optional<ShellType> shellType = player.getBlockShotGame().getShotGun().ejectShell();
     }
 
 
     private void useHandSaw(BlockShotPlayer player) {
         player.getBlockShotGame()
                 .getShotGun()
-                .setSawedOff(true);
+                .setState(ShotGunState.SAWED_OFF);
     }
 
 
     private void useMagnifyingGlass(BlockShotPlayer player) {
-        ShellType shell = player.getBlockShotGame()
+        Optional<ShellType> shell = player.getBlockShotGame()
                 .getShotGun()
                 .peek();
 
@@ -50,4 +57,5 @@ public class ItemEffectManager {
     private void useHandcuffs(BlockShotPlayer player){
 
     }
+    //TODO FALTAN MUCHOS EFFECTOS POR MANEJAR
 }

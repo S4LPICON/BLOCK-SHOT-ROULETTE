@@ -1,6 +1,6 @@
 package com.s4lpicon.blockShotRoulette.util;
 
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 
 import java.util.Random;
 

@@ -2,11 +2,12 @@ package com.s4lpicon.blockShotRoulette.model;
 
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDeathEvent;
-import com.s4lpicon.blockShotRoulette.item.BlockShotItemType;
-import com.s4lpicon.blockShotRoulette.manager.ItemManager;
+import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerHealEvent;
+import com.s4lpicon.blockShotRoulette.event.player.model.DeathReason;
+import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
 import com.s4lpicon.blockShotRoulette.task.AimItemTask;
-import com.s4lpicon.blockShotRoulette.task.AimTask;
+import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -16,12 +17,10 @@ public class BlockShotPlayer {
     private int energy;
     private PlayerState playerState;
     private final BlockShotGame blockShotGame;
-    private AimTask aimTask;
+    private AimPlayerTask aimPlayerTask;
     private AimItemTask aimItemTask;
 
     private final BlockShotItemType[] items = new BlockShotItemType[8];
-
-    private final ItemManager itemManager = new ItemManager(this);
 
     public BlockShotPlayer(Player player, BlockShotGame blockShotGame){
         this.player = player;
@@ -43,11 +42,23 @@ public class BlockShotPlayer {
         return this.energy;
     }
 
-    public void addEnergy(int energy){
-        this.energy += energy;
+    public void addEnergy(int amount){
+
+        this.energy += amount;
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotPlayerHealEvent(
+                        this,
+                        amount
+                )
+        );
     }
 
-    public void takeDamage(BlockShotPlayer damager, int amount) {
+    public void takeDamage(BlockShotPlayer damager, int amount){
+
+        if(playerState == PlayerState.DEAD){
+            return;
+        }
 
         this.energy -= amount;
 
@@ -59,17 +70,25 @@ public class BlockShotPlayer {
                 )
         );
 
-        if (this.energy <= 0) {
-
-            this.playerState = PlayerState.DEAD;
-
-            Bukkit.getPluginManager().callEvent(
-                    new BlockShotPlayerDeathEvent(
-                            damager,
-                            this
-                    )
-            );
+        if(this.energy <= 0){
+            die(damager);
         }
+    }
+
+    public void die(BlockShotPlayer killer) {
+        this.playerState = PlayerState.DEAD;
+
+        DeathReason reason = killer == this
+                ? DeathReason.SELF_SHOT
+                : DeathReason.PLAYER_SHOT;
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotPlayerDeathEvent(
+                        this,
+                        killer,
+                        reason
+                )
+        );
     }
 
     public PlayerState getPlayerState(){
@@ -84,16 +103,16 @@ public class BlockShotPlayer {
         this.playerState = playerState;
     }
 
-    public void setAimTask(AimTask aimTask){
-        this.aimTask = aimTask;
+    public void setAimTask(AimPlayerTask aimPlayerTask){
+        this.aimPlayerTask = aimPlayerTask;
     }
 
     public void setAimItemTask(AimItemTask aimItemTask){
         this.aimItemTask = aimItemTask;
     }
 
-    public AimTask getAimTask(){
-        return this.aimTask;
+    public AimPlayerTask getAimTask(){
+        return this.aimPlayerTask;
     }
 
     public AimItemTask getAimItemTask(){
@@ -102,9 +121,5 @@ public class BlockShotPlayer {
 
     public BlockShotItemType[] getItems(){
         return this.items;
-    }
-
-    public ItemManager getItemManager(){
-        return this.itemManager;
     }
 }

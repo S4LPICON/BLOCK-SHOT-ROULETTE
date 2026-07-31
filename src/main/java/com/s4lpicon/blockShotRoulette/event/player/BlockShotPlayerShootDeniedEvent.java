@@ -1,36 +1,28 @@
 package com.s4lpicon.blockShotRoulette.event.player;
 
-import com.s4lpicon.blockShotRoulette.item.type.ShellType;
+import com.s4lpicon.blockShotRoulette.event.player.model.ShootDeniedReason;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.codehaus.plexus.util.cli.shell.Shell;
 import org.jspecify.annotations.NonNull;
 
-public class BlockShotPlayerShootEvent extends Event {
-
+public class BlockShotPlayerShootDeniedEvent extends Event {
     private static final HandlerList HANDLERS = new HandlerList();
 
     private final BlockShotPlayer shooter;
-    private final BlockShotPlayer target;
-    private final ShellType shellType;
+    private final ShootDeniedReason reason;
 
-    public BlockShotPlayerShootEvent(BlockShotPlayer shooter, BlockShotPlayer target, ShellType shellType) {
+    public BlockShotPlayerShootDeniedEvent(BlockShotPlayer shooter, ShootDeniedReason reason) {
         this.shooter = shooter;
-        this.target = target;
-        this.shellType = shellType;
+        this.reason = reason;
     }
 
     public BlockShotPlayer getShooter() {
         return shooter;
     }
 
-    public BlockShotPlayer getTarget(){
-        return this.target;
-    }
-
-    public ShellType getShellType() {
-        return shellType;
+    public ShootDeniedReason getReason() {
+        return reason;
     }
 
     @Override
@@ -41,5 +33,4 @@ public class BlockShotPlayerShootEvent extends Event {
     public static HandlerList getHandlerList() {
         return HANDLERS;  //DONT DELETE
     }
-
 }
