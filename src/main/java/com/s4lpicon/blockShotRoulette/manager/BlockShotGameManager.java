@@ -1,6 +1,7 @@
 package com.s4lpicon.blockShotRoulette.manager;
 
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
+import com.s4lpicon.blockShotRoulette.event.EventDispatcher;
 import com.s4lpicon.blockShotRoulette.registry.MapRegistry;
 import com.s4lpicon.blockShotRoulette.model.BlockShotGame;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
@@ -15,15 +16,17 @@ public class BlockShotGameManager {
     private final Set<BlockShotGame> activeGames= new HashSet<>();
     private final Map<UUID, BlockShotPlayer> activePlayers = new HashMap<>();
     private final BlockShotRoulette plugin;
+    private final EventDispatcher eventDispatcher;
 
 
-    public BlockShotGameManager(BlockShotRoulette plugin){
+    public BlockShotGameManager(BlockShotRoulette plugin, EventDispatcher eventDispatcher){
         this.plugin = plugin;
+        this.eventDispatcher = eventDispatcher;
     }
 
 
     public void createGame(@NotNull List<Player> players){
-        BlockShotGame game = new BlockShotGame(players, plugin);
+        BlockShotGame game = new BlockShotGame(players,eventDispatcher, plugin);
         for (BlockShotPlayer player : game.getPlayers()) {
             activePlayers.put(
                     player.getPlayer().getUniqueId(),

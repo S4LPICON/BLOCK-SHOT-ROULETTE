@@ -8,8 +8,12 @@ import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemGivenListe
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemRemovedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.item.BlockShotItemUsedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.match.BlockShotMatchEndListener;
+import com.s4lpicon.blockShotRoulette.listener.game.match.BlockShotMatchStartListener;
 import com.s4lpicon.blockShotRoulette.listener.game.player.*;
-import com.s4lpicon.blockShotRoulette.listener.game.shotgun.BlockShotShotgunShellEjectedListener;
+import com.s4lpicon.blockShotRoulette.listener.game.round.BlockShotRoundEndListener;
+import com.s4lpicon.blockShotRoulette.listener.game.round.BlockShotRoundStartListener;
+import com.s4lpicon.blockShotRoulette.listener.game.shotgun.BlockShotShotgunReloadListener;
+import com.s4lpicon.blockShotRoulette.listener.game.shotgun.shell.BlockShotShotgunShellEjectedListener;
 import com.s4lpicon.blockShotRoulette.listener.game.turn.BlockShotTurnEndListener;
 import com.s4lpicon.blockShotRoulette.listener.game.turn.BlockShotTurnStartListener;
 import com.s4lpicon.blockShotRoulette.listener.vanilla.PlayerInteractListener;
@@ -28,7 +32,9 @@ import java.util.Objects;
 
 public final class BlockShotRoulette extends JavaPlugin {
 
-    private final BlockShotGameManager blockShotGameManager = new BlockShotGameManager(this);
+    private final EventDispatcher eventDispatcher = new EventDispatcher();
+
+    private final BlockShotGameManager blockShotGameManager = new BlockShotGameManager(this, eventDispatcher);
 
     private static BlockShotRoulette instance;
 
@@ -36,7 +42,7 @@ public final class BlockShotRoulette extends JavaPlugin {
 
     private final ItemManager itemManager = new ItemManager(itemEffectManager);
 
-    private final EventDispatcher eventDispatcher = new EventDispatcher();
+
 
     @Override
     public void onEnable() {
@@ -47,6 +53,8 @@ public final class BlockShotRoulette extends JavaPlugin {
         registerItemsListeners();
         registerTurnsListeners();
         registerShotgunListeners();
+        registerMatchListeners();
+        registerRoundListeners();
 
         Objects.requireNonNull(getCommand("test")).setExecutor(new TestCommand(this));
 
@@ -92,15 +100,24 @@ public final class BlockShotRoulette extends JavaPlugin {
 
     private void registerShotgunListeners() {
         registerListeners(
-                new BlockShotShotgunShellEjectedListener()
+                new BlockShotShotgunShellEjectedListener(),
+                new BlockShotShotgunReloadListener()
 
         );
     }
 
     private void registerMatchListeners() {
         registerListeners(
+                new BlockShotMatchStartListener(),
                 new BlockShotMatchEndListener()
 
+        );
+    }
+
+    private void registerRoundListeners() {
+        registerListeners(
+                new BlockShotRoundStartListener(),
+                new BlockShotRoundEndListener()
         );
     }
 

@@ -1,4 +1,4 @@
-package com.s4lpicon.blockShotRoulette.listener.game.shotgun;
+package com.s4lpicon.blockShotRoulette.listener.game.shotgun.shell;
 
 import com.s4lpicon.blockShotRoulette.event.shotgun.shell.BlockShotShotgunShellEjectedEvent;
 import org.bukkit.event.EventHandler;

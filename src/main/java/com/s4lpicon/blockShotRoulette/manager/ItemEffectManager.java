@@ -3,6 +3,8 @@ package com.s4lpicon.blockShotRoulette.manager;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerDamageEvent;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerHealEvent;
 import com.s4lpicon.blockShotRoulette.event.player.model.DamageReason;
+import com.s4lpicon.blockShotRoulette.event.shotgun.BlockShotShotgunStateChangedEvent;
+import com.s4lpicon.blockShotRoulette.event.shotgun.shell.BlockShotShotgunShellPeekEvent;
 import com.s4lpicon.blockShotRoulette.event.shotgun.shell.BlockShotShotgunShellRevealFailedEvent;
 import com.s4lpicon.blockShotRoulette.event.shotgun.shell.BlockShotShotgunShellRevealedEvent;
 import com.s4lpicon.blockShotRoulette.item.ShotGun;
@@ -113,9 +115,19 @@ public class ItemEffectManager {
     }
 
     private void useHandSaw(BlockShotPlayer player) {
-        player.getBlockShotGame()
-                .getShotGun()
-                .setState(ShotGunState.SAWED_OFF);
+
+        ShotGun shotGun = player.getBlockShotGame().getShotGun();
+        ShotGunState oldState = shotGun.getState();
+        shotGun.setState(ShotGunState.SAWED_OFF);
+
+        Bukkit.getPluginManager().callEvent(
+                new BlockShotShotgunStateChangedEvent(
+                        shotGun,
+                        oldState,
+                        ShotGunState.SAWED_OFF,
+                        player.getBlockShotGame()
+                )
+        );
     }
 
     private void useHandcuffs(BlockShotPlayer player){ //no aun este es para modo de 2 jugadores
@@ -133,12 +145,16 @@ public class ItemEffectManager {
     }
 
     private void useMagnifyingGlass(BlockShotPlayer player) {
-        Optional<ShellType> shell = player.getBlockShotGame()
+        ShellType shell = player.getBlockShotGame()
                 .getShotGun()
                 .peek();
 
-        player.getPlayer()
-                .sendMessage("La siguiente bala es: " + shell);
+        player.getBlockShotGame().getEventDispatcher().call(
+                new BlockShotShotgunShellPeekEvent(
+                        player,
+                        shell
+                )
+        );
     }
 
 

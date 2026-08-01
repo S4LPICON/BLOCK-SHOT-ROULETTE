@@ -6,12 +6,16 @@ import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemRemovedEvent;
 import com.s4lpicon.blockShotRoulette.event.item.BlockShotItemUsedEvent;
 import com.s4lpicon.blockShotRoulette.event.player.BlockShotPlayerItemsClearedEvent;
 import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
+import com.s4lpicon.blockShotRoulette.item.type.ShellType;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
+import com.s4lpicon.blockShotRoulette.registry.settings.RoundSettings;
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ItemManager {
 
@@ -22,6 +26,20 @@ public class ItemManager {
         this.itemEffectManager = itemEffectManager;
     }
 
+    public void clearItemsFromAll(List<@NotNull BlockShotPlayer> players ){
+        for (BlockShotPlayer player : players){
+            clear(player);
+        }
+    }
+
+    public void giveItemsToAll(List<@NotNull BlockShotPlayer> players , RoundSettings settings){
+        for (BlockShotPlayer player : players){
+            for (int i = 0; i < settings.getItemsPerPlayer(); i++){
+                BlockShotItemType radomItem = BlockShotItemType.values()[ThreadLocalRandom.current().nextInt(BlockShotItemType.values().length)];
+                giveItem(player, radomItem);
+            }
+        }
+    }
 
     public void giveItem(BlockShotPlayer blockShotPlayer, BlockShotItemType item) {
 

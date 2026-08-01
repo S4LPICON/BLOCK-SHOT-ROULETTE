@@ -3,6 +3,7 @@ package com.s4lpicon.blockShotRoulette.listener.vanilla;
 import com.s4lpicon.blockShotRoulette.BlockShotRoulette;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Interaction;
 import org.bukkit.entity.Player;
@@ -65,6 +66,7 @@ public class PlayerInteractListener implements Listener {
         shooter.getPlayer().sendMessage("Listener triggered");
 
         if (entity==null){
+            Bukkit.getLogger().warning("la entidad es nula");
             return;
         }
 
@@ -79,6 +81,7 @@ public class PlayerInteractListener implements Listener {
 
 
         if (target == null){
+            Bukkit.getLogger().warning("target nula");
             return;
         }
 

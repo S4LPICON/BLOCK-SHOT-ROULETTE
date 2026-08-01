@@ -14,9 +14,9 @@ public class BlockShotPlayerShootListener implements Listener {
     public void onShoot(BlockShotPlayerShootEvent event) {
         BlockShotPlayer shooter = event.getShooter();
         BlockShotPlayer target = event.getTarget();
-
-        shooter.getPlayer().sendMessage(
-                Component.text("Disparaste a: " + target));
-
+        Bukkit.broadcast(Component.text("--------------------------------------------"));
+        Bukkit.broadcast(Component.text(shooter.getPlayer().getName() + " DISPARO A " + target.getPlayer().getName() + " CON UNA BALA " + event.getShellType()));
+        Bukkit.broadcast(Component.text("balas de la escopeta " + event.getShooter().getBlockShotGame().getShotGun().getShells()));
+        Bukkit.broadcast(Component.text("--------------------------------------------"));
     }
 }

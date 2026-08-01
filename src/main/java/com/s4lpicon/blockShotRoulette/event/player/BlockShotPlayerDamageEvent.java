@@ -14,12 +14,13 @@ public class BlockShotPlayerDamageEvent extends Event {
     private BlockShotPlayer shooter;
     private final BlockShotPlayer victim;
     private final int damage;
-    private DamageReason reason;
+    private final DamageReason reason;
 
     public BlockShotPlayerDamageEvent(BlockShotPlayer shooter, BlockShotPlayer victim, int damage) {
         this.shooter = shooter;
         this.victim = victim;
         this.damage = damage;
+        this.reason = DamageReason.PLAYER_SHOT;
     }
 
     public BlockShotPlayerDamageEvent(BlockShotPlayer victim, int damage, DamageReason reason) {

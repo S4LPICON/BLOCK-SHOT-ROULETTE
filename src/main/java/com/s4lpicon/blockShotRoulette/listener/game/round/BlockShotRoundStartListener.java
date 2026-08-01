@@ -1,6 +1,6 @@
 package com.s4lpicon.blockShotRoulette.listener.game.round;
 
-import com.s4lpicon.blockShotRoulette.event.round.BlockShotRoundEndEvent;
+import com.s4lpicon.blockShotRoulette.event.round.BlockShotRoundStartEvent;
 import com.s4lpicon.blockShotRoulette.model.BlockShotPlayer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -8,14 +8,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class BlockShotRoundEndListener implements Listener {
+public class BlockShotRoundStartListener implements Listener {
 
     @EventHandler
-    public void onRoundEnd(BlockShotRoundEndEvent event){
-        Bukkit.broadcast(Component.text("HA TERMINADO LA RONDA ", NamedTextColor.BLUE));
-        Bukkit.broadcast(Component.text("El ganador de esta ronda fue: ", NamedTextColor.YELLOW)
+    public void onRoundStart(BlockShotRoundStartEvent event){
+        Bukkit.broadcast(Component.text("HA EMPEZADO LA RONDA: ", NamedTextColor.YELLOW)
                 .append(Component.text(
-                        event.getRoundWinner().getPlayer().getName(),
+                        event.getGame().getRound(),
                         NamedTextColor.GOLD
                 )));
     }

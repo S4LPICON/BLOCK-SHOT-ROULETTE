@@ -26,7 +26,6 @@ public class ShotGun {
         if (liveShells + blankShells > maxShells) {
             throw new IllegalArgumentException("Too many shells");
         }
-        //TODO call BlockShotShotgunReloadEvent
 
         shells.clear();
 
@@ -50,14 +49,13 @@ public class ShotGun {
     }
 
     public ShellType shoot(){
-        //TODO call BlockShotShotgunShootEvent
+
         ShellType shell = shells.removeFirst();
         return shell;
     }
 
-    public Optional<ShellType> peek(){
-        //TODO call BlockShotShotgunPeekEvent
-        return Optional.ofNullable(shells.peekFirst());
+    public ShellType peek(){
+        return shells.peekFirst();
     }
 
     public Optional<ShellType> ejectFirstShell() {
@@ -164,16 +162,10 @@ public class ShotGun {
         if (this.state == newState) {
             return;
         }
-
-        ShotGunState oldState = this.state;
         this.state = newState;
+    }
 
-        Bukkit.getPluginManager().callEvent(
-                new BlockShotShotgunStateChangedEvent(
-                        this,
-                        oldState,
-                        newState
-                )
-        );
+    public Deque<ShellType> getShells() {
+        return shells;
     }
 }

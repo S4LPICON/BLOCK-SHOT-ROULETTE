@@ -19,7 +19,6 @@ public class BlockShotRoundStartEvent extends Event {
         return this.game;
     }
 
-
     @Override
     public @NotNull HandlerList getHandlers() {
         return HANDLERS;

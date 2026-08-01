@@ -5,6 +5,7 @@ import com.s4lpicon.blockShotRoulette.item.type.BlockShotItemType;
 import com.s4lpicon.blockShotRoulette.state.PlayerState;
 import com.s4lpicon.blockShotRoulette.task.AimItemTask;
 import com.s4lpicon.blockShotRoulette.task.AimPlayerTask;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class BlockShotPlayer {
@@ -15,6 +16,7 @@ public class BlockShotPlayer {
     private final BlockShotGame blockShotGame;
     private AimPlayerTask aimPlayerTask;
     private AimItemTask aimItemTask;
+    private boolean actionLocked;
 
     private final BlockShotItemType[] items = new BlockShotItemType[8];
 
@@ -43,6 +45,7 @@ public class BlockShotPlayer {
     public void takeDamage( int amount) {
 
         if (playerState == PlayerState.DEAD) {
+            Bukkit.getLogger().warning("ESTAS INTENTANDO QUITAR VIDA A UN MUERTO");
             return;
         }
         this.energy -= amount;
@@ -78,6 +81,14 @@ public class BlockShotPlayer {
 
     public AimItemTask getAimItemTask(){
         return this.aimItemTask;
+    }
+
+    public boolean isActionLocked() {
+        return actionLocked;
+    }
+
+    public void setActionLocked(boolean actionLocked) {
+        this.actionLocked = actionLocked;
     }
 
     public BlockShotItemType[] getItems(){
